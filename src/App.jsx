@@ -410,7 +410,7 @@ function TimetableCalculator({ timetable }) {
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Fetch Real Attendance</h2>
         <p className="text-gray-600 mb-4">
           Click the button to re-fetch your official attendance record. <br />
-          input for username and pass in the bottom (have to enter first time)
+          input for username and pass in the bottom (have to enter first time only)
         </p>
         <button 
           onClick={fetchAttendance}
