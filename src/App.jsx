@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 // --- Configuration ---
 // These are the initial values for the attendance calculation.
-const INITIAL_TOTAL_CLASSES = 250;
-const INITIAL_ATTENDED_CLASSES = 220;
+// const INITIAL_TOTAL_CLASSES = 250;
+// const INITIAL_ATTENDED_CLASSES = 220;
 // --- End Configuration ---
 
 // Main App Component
@@ -178,7 +178,7 @@ export default function App() {
 function TimetableCalculator({ timetable }) {
   const [skippedClasses, setSkippedClasses] = useState({});
   const [attendance, setAttendance] = useState({
-    percentage: (INITIAL_ATTENDED_CLASSES / INITIAL_TOTAL_CLASSES) * 100,
+    percentage: (0) * 100,
     skippedCount: 0,
   });
   
@@ -338,15 +338,10 @@ function TimetableCalculator({ timetable }) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg">
       <div className="text-center mb-6 border-b pb-4">
-        <h2 className="text-2xl font-semibold text-gray-800">Attendance Scenario</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">select classes u'll skip in future (select day to skip all classes on that day)</h2>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mt-3">
-            <p className="text-lg text-gray-600">
-                If you skip <strong className="text-red-500">{attendance.skippedCount}</strong> class(es), 
-                your new attendance will be:
-            </p>
-            <p className={`text-3xl font-bold ${attendance.percentage >= 75 ? 'text-green-600' : 'text-red-600'}`}>
-                {attendance.percentage.toFixed(2)}%
-            </p>
+            
+            
         </div>
         
 
@@ -414,8 +409,8 @@ function TimetableCalculator({ timetable }) {
       <div className="mt-8 border-t pt-6 text-center">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Fetch Real Attendance</h2>
         <p className="text-gray-600 mb-4">
-          Click the button to fetch your official attendance record.
-          (Requires hardcoded login details and a valid CAPTCHA in the code).
+          Click the button to re-fetch your official attendance record. <br />
+          input for username and pass in the bottom (have to enter first time)
         </p>
         <button 
           onClick={fetchAttendance}
@@ -558,7 +553,7 @@ function AttaFunc(props) {
 
                   <div className="mt-4 sm:mt-0 text-right">
                     <div className={`text-4xl font-extrabold ${overallPercentage >= 70 ? 'text-green-600' : 'text-red-600'}`}>
-                      {overallPercentage}%
+                      {overallPercentage.toFixed(2)}%
                     </div>
                     <div className="text-sm font-medium text-gray-500">
                       Overall
@@ -585,6 +580,12 @@ function AttaFunc(props) {
                       <span className="text-xs text-gray-500">Practical (P)</span>
                       <p className="font-medium text-gray-800">
                         {safeParseInt(subject.Ptotalpres)} / {safeParseInt(subject.Ptotalclass)}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-500">Skip</span>
+                      <p className="font-medium text-gray-800">
+                        {skip}
                       </p>
                     </div>
                   </div>
